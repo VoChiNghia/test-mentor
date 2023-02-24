@@ -8,7 +8,7 @@ import { DispatchType, RootState } from "../store/store";
 import { useDispatch, useSelector } from "react-redux";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-import { ProjectDetail } from "../type/project";
+import { ProjectDetail, ProjectModal } from "../type/project";
 
 const CreateTask = () => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -69,8 +69,8 @@ const handleCraete = () => {
    
        <select name="cars" id="cars" className="mt-1 p-1 w-full outline-none border-2 rounded-sm" onChange={e => setProjectId(e.target.value)}>
             {
-              allProject?.map((item:any,index:number) =>(
-                <option key={index} value={item.projectId}>{item.projectName}</option>
+              allProject?.map((item:ProjectModal,index:number) =>(
+                <option key={index} value={item.id}>{item.projectName}</option>
               ))
             }
             </select>
