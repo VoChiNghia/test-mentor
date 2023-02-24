@@ -1,0 +1,53 @@
+import React from "react";
+import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+
+
+type Props = {
+  totalPages: number;
+  postPerPage: number;
+  setCurrentPage: any;
+  currentPage: number;
+};
+
+const Pagination = ({
+  totalPages,
+  postPerPage,
+  setCurrentPage,
+  currentPage,
+}: Props) => {
+  let pages:number[] = [];
+  for (let i = 1; i <= Math.ceil(totalPages / postPerPage); i++) {
+    pages.push(i);
+  }
+
+  return (
+    <div className="pagination my-5">
+      <ul className="flex justify-center ">
+        <button
+          className="btn-move-left"
+          disabled={currentPage === pages[1] ? true : false}
+          onClick={() => setCurrentPage(currentPage - 1)}
+        >
+          <MdChevronLeft />
+        </button>
+
+        {
+          
+          pages.map((page:number, index:number) =>(
+            <li className={`px-4 poiter ${page === currentPage ? 'bg-red-500 text-white' : ''}`} key={index} onClick={()=>setCurrentPage(page)}>{page}</li>
+          ))
+          
+        }
+        <button
+          className="mx-5"
+          disabled={currentPage === pages[pages.length - 1] ? true : false}
+          onClick={() => setCurrentPage(currentPage + 1)}
+        >
+          <MdChevronRight />
+        </button>
+      </ul>
+    </div>
+  );
+};
+
+export default Pagination;
